@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1982 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+
+    <title>Send Secure Message</title>
+    <!--<script src="Scripts/jquery-1.9.1.js" type="text/javascript"></script>-->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
+
+    <!-- For the JavaScript APIs for Office, go to https://aka.ms/officejs-overview to learn more. -->
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+    <!--<script src="office.js" type="text/javascript"></script>-->
+
+    <script src="app.js" type="text/javascript"></script>
+    <script src="core.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="base.css">
+    <!--<link rel="stylesheet" href="spin.css">-->
+    <link rel="stylesheet" href="https://appsforoffice.microsoft.com/fabric/2.1.0/fabric.min.css" />
+    <link rel="stylesheet" href="https://appsforoffice.microsoft.com/fabric/2.1.0/fabric.components.min.css" />
+
+</head>
+<body class="ms-Fabric">
+
+    <div id="overlay">
+        <div id="progress-indicator">
+            <table>
+                <tr>
+                    <td align="center">
+                        <img src="images/spinner.gif" width="120" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p id="spin-msg" class="ms-font-l"></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="notification-popup">
+            <table>
+                <tr>
+                    <td colspan="3" align="center">
+                        <p id="notification-title" class="ms-font-xl">
+
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1">
+                        <img id="notification-icon" width="64" />
+                    </td>
+                    <td colspan="2">
+                        <p id="notification-msg" class="ms-font-l"></p>
+                    </td>
+                </tr>
+                <tr class="break">
+                    <td colspan="2"></td>
+                </tr>
+
+                <tr>
+                    <td colspan="3" align="center">
+                        <button class="ms-Button ms-Button--primary" id="button-close" style="width:150px;">
+
+                            <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+                            <span class="ms-Button-label" id="button-ok-text">OK</span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <div id="content-main">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <p class="ms-font-xl ms-fontColor-neutralSecondary ms-fontWeight-light" style="padding-left:10px;">Are you sure?</p>
+        <p id="para-stat"></p>
+        <div class="ms-font-xl ms-fontColor-white">
+
+            <button class="ms-Button ms-Button--primary" id="button-send-message"
+                    style="float:right;width:200px;">
+                <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+                <span class="ms-Button-label" id="button-send-message-text">Yes, Send Message</span>
+                <span class="ms-Button-description" id="button-desc"></span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+         Office.initialize = function (reason) {
+        $(document).ready(function () {
+
+            $('#button-send-message').click(sendMessage);//sendMessage
+            $('#button-close').click(closeTaskpane);
+
+            loadSettings();
+
+            prepareData();
+        });
+    };
+    </script>
+</body>
+</html>

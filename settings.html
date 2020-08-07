@@ -1,0 +1,224 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1982 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+
+    <title>Settings</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+    <script src="app.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="https://appsforoffice.microsoft.com/fabric/2.1.0/fabric.min.css" />
+    <link rel="stylesheet" href="https://appsforoffice.microsoft.com/fabric/2.1.0/fabric.components.min.css" />
+    <link rel="stylesheet" href="base.css">
+</head>
+<body class="ms-Fabric">
+
+    <div style="padding:5px;">
+        <p class="ms-font-xl ms-ms-fontColor-black ms-fontWeight-semilight">Settings</p>
+
+        <hr />
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">Username:</span>
+                    </td>
+                    <td>
+                        <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
+                            <!--value=""-->
+                            <input id="input-username" style="width:210px"
+                                   class="ms-font-m ms-fontColor-black ms-fontWeight-semilight" />
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">Password:</span>
+                    </td>
+                    <td>
+                        <span>
+                            <!--value=""-->
+                            <input type="password" id="input-password" style="width:210px"
+                                   class="ms-font-mms-fontColor-black ms-fontWeight-semilight" />
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">Endpoint:</span>
+                    </td>
+                    <td>
+                        <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                            
+                            <!--value="https://secure.sslpost.com/app/xml/encrypt/"-->
+
+                            <input id="input-endpoint" style="width:210px;"
+                                   disabled
+                                   class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight" />
+                        </span>
+                    </td>
+                </tr>
+            </table>
+
+            <!--***********************************************-->
+            <hr />
+            <span class="ms-font-l ms-fontColor-neutralSecondary ms-fontWeight-semilight">Auto Encrypt:</span>
+            <br />
+            <p class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                Send using <span id="app-name"></span> if one of the following keywords, comma-separated, is present in email's subject line:
+            </p>
+
+            <input type="text"
+                   id="input-keywords"
+                   style="width:250px;"
+                   placeholder="eg: #confidential, #secure, #encrypted, .. etc"
+                   class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight" />
+            <br />
+            <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                <input type="checkbox" id="chk-remove-keyword"/>
+                <label for="chk-remove-keyword">Remove the keyword from the subject line before sending.</label>
+            </span>
+          
+            <!--***********************************************-->
+            <br />
+            <hr />
+            <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                <input type="checkbox" id="chk-require-login"
+                       disabled checked />
+                <label for="chk-require-login">Require the recipient to login to open received email.</label>
+            </span>
+            <br />
+            <hr />
+
+            <span class="ms-font-l ms-fontColor-neutralSecondary ms-fontWeight-semilight">Sending Mode:</span>
+            <br />
+            <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                <input type="radio" name="send-mode" id="radio-linked"
+                       disabled checked />
+                <label for="radion-linked">Linked: delivers the email to the recipient's mailbox.</label>
+            </span>
+            <br />
+            <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                <input type="radio" name="send-mode" id="radio-delegate"
+                       disabled
+                       value="" />
+                <label for="radio-delegate">Delegate: do not deliver the email to the recipient's mailbox.</label>
+            </span>
+            <br />
+            <hr />
+            <span class="ms-font-l ms-fontColor-neutralSecondary ms-fontWeight-semilight">Download Mode:</span>
+            <br />
+            <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                <input type="radio" name="download-mode" id="radio-multi-link"
+                       disabled checked>
+                <label for="radio-multi-link">Multiple links, each file will have its own link.</label>
+            </span>
+            <br />
+            <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                <input type="radio" name="download-mode" id="radio-single-link"
+                       disabled />
+                <label for="radio-single-link">Single link, all files will be packaged in a single zip archive.</label>
+            </span>
+        </div>
+
+        <div id="footer" style="margin-top:20px;">
+            <button class="ms-Button ms-Button--primary" id="button-save-settings"
+                    style="float:right;width:200px;">
+                <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+                <span class="ms-Button-label" id="button-save-settings-text">Save Settings</span>
+                <span class="ms-Button-description" id="button-desc"></span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        var settings =
+        {
+            username: "",
+            password: "",
+            removeKeyword:false,
+            autoSendKeywordList:""
+        };
+
+        Office.initialize = function (reason) {
+            $(document).ready(function () {
+
+ 
+                 $('#button-save-settings').click(saveSettings);
+
+                 $('#input-endpoint').val(appInfo.endpoint);
+                 $('#app-name').html(appInfo.name);
+
+                loadSettings();
+                showSettings();
+            });
+        };
+
+        function loadSettings() {
+            var settingStorage = Office.context.roamingSettings;
+
+            //var settingsStr = settingStorage.get("SSL365Settings");
+            var settingsStr = settingStorage.get(appInfo.id+"Settings");
+
+            if (settingsStr !== undefined && settingsStr !== null) {
+
+                try {
+                    settings = JSON.parse(settingsStr);
+                } catch (err) {
+                    settings = null;
+                }
+            } else {
+                settings = null;
+            }
+        }
+
+        function showSettings() {
+
+            if (settings === null)
+                return;
+
+            $('#input-username').val(settings.username);
+            $('#input-password').val(settings.password);
+            $('#chk-remove-keyword').prop("checked",settings.removeKeyword);
+            $('#input-keywords').val(settings.autoSendKeywordList);
+        }
+
+        function saveSettings() {
+
+            settings =
+            {
+                username: "",
+                password: "",
+                removeKeyword:false,
+                autoSendKeywordList: ""
+            };
+
+            settings.username = $('#input-username').val();
+            settings.password = $('#input-password').val();
+            settings.removeKeyword = $('#chk-remove-keyword').prop("checked");
+            settings.autoSendKeywordList=$('#input-keywords').val();
+           
+
+            var settingStorage = Office.context.roamingSettings;
+
+            settingStorage.set(appInfo.id+"Settings", JSON.stringify(settings));
+        
+            Office.context.roamingSettings.saveAsync(function (result) {
+                if (result.status === Office.AsyncResultStatus.Succeeded) {
+                    Office.context.ui.closeContainer();
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
