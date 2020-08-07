@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" 
+			xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" 
+			xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" 
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:type="MailApp">
+   <Id>37e4dc7b-f6dc-4746-876e-78944b910422</Id>
+   <Version>0.6.0.0</Version>
+   <ProviderName>SSLPost Ltd</ProviderName>
+   <DefaultLocale>en-US</DefaultLocale>
+   <DisplayName DefaultValue="SSLP365" />
+   <Description DefaultValue="Send encrypted email using SSLPost secure email service." />
+   <IconUrl DefaultValue="https://reda-beloued.github.io/encryption/images/sslpost/logo64.png" />
+   <SupportUrl DefaultValue="https://www.sslpost.com/contact-us/" />
+   <AppDomains>
+      <AppDomain>AppDomain1</AppDomain>
+      <AppDomain>AppDomain2</AppDomain>
+      <AppDomain>AppDomain3</AppDomain>
+   </AppDomains>
+   <Hosts>
+      <Host Name="Mailbox" />
+   </Hosts>
+   <Requirements>
+      <Sets>
+         <Set Name="Mailbox" MinVersion="1.4" />
+      </Sets>
+   </Requirements>
+   <FormSettings>
+      <Form xsi:type="ItemEdit">
+         <DesktopSettings>
+            <SourceLocation DefaultValue="https://reda-beloued.github.io/encryption/compose.html" />
+         </DesktopSettings>
+      </Form>
+   </FormSettings>
+   <Permissions>ReadWriteMailbox</Permissions>
+   <Rule xsi:type="RuleCollection" Mode="Or">
+      <Rule xsi:type="ItemIs" ItemType="Message" FormType="Edit" />
+      <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
+   </Rule>
+  
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+   
+ <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+
+	
+      <Requirements>
+         <bt:Sets DefaultMinVersion="1.4">
+            <bt:Set Name="Mailbox" />
+         </bt:Sets>
+      </Requirements>
+      <Hosts>
+         <Host xsi:type="MailHost">
+            <DesktopFormFactor>
+			
+			<FunctionFile resid="onSendFunctionFileUrl" />
+         
+          <ExtensionPoint xsi:type="Events">
+            <Event Type="ItemSend" FunctionExecution="synchronous" FunctionName="sendUsingSSL365" />
+          </ExtensionPoint>
+		  
+               <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+                  <OfficeTab id="tabSSLPostLabel">
+                     <Group id="grpSSLPost">
+                        <Label resid="groupLabelSSLPost" />
+                        <Control xsi:type="Button" id="msgComposeOpenPaneButton">
+                           <Label resid="btnSendSecureLabel" />
+                           <Supertip>
+                              <Title resid="btnSendSecureSuperTipTitle" />
+                              <Description resid="btnSendSecureSuperTipDescription" />
+                           </Supertip>
+                           <Icon>
+                              <bt:Image size="16" resid="secureEmail16" />
+                              <bt:Image size="32" resid="secureEmail32" />
+                              <bt:Image size="64" resid="secureEmail64" />
+                              <bt:Image size="80" resid="secureEmail80" />
+                           </Icon>
+                           <Action xsi:type="ShowTaskpane">
+                              <SourceLocation resid="messageComposeTaskPaneUrl" />
+                           </Action>
+                        </Control>
+                        <Control xsi:type="Button" id="msgComposeSettingsButton">
+                           <Label resid="btnSettingsLabel" />
+                           <Supertip>
+                              <Title resid="btnSettingsSuperTipTitle" />
+                              <Description resid="btnSettingsSuperTipDescription" />
+                           </Supertip>
+                           <Icon>
+                              <bt:Image size="16" resid="settings16" />
+                              <bt:Image size="32" resid="settings32" />
+                              <bt:Image size="64" resid="settings64" />
+                              <bt:Image size="80" resid="settings80" />
+                           </Icon>
+                           <Action xsi:type="ShowTaskpane">
+                              <SourceLocation resid="settingsTaskPaneUrl" />
+                           </Action>
+                        </Control>
+                        <Control xsi:type="Button" id="msgComposeAboutButton">
+                           <Label resid="btnAboutLabel" />
+                           <Supertip>
+                              <Title resid="btnAboutSuperTipTitle" />
+                              <Description resid="btnAboutSuperTipDescription" />
+                           </Supertip>
+                           <Icon>
+                              <bt:Image size="16" resid="about16" />
+                              <bt:Image size="32" resid="about32" />
+                              <bt:Image size="64" resid="about64" />
+                              <bt:Image size="80" resid="about80" />
+                           </Icon>
+                           <Action xsi:type="ShowTaskpane">
+                              <SourceLocation resid="aboutTaskPaneUrl" />
+                           </Action>
+                        </Control>
+                     </Group>
+                  </OfficeTab>
+               </ExtensionPoint>
+            </DesktopFormFactor>
+         </Host>
+      </Hosts>
+      <Resources>
+         <bt:Images>
+            <bt:Image id="secureEmail16" DefaultValue="https://reda-beloued.github.io/encryption/images/secureEmail16.png" />
+            <bt:Image id="secureEmail32" DefaultValue="https://reda-beloued.github.io/encryption/images/secureEmail32.png" />
+            <bt:Image id="secureEmail64" DefaultValue="https://reda-beloued.github.io/encryption/images/secureEmail64.png" />
+            <bt:Image id="secureEmail80" DefaultValue="https://reda-beloued.github.io/encryption/images/secureEmail80.png" />
+            <bt:Image id="settings16" DefaultValue="https://reda-beloued.github.io/encryption/images/settings16.png" />
+            <bt:Image id="settings32" DefaultValue="https://reda-beloued.github.io/encryption/images/settings32.png" />
+            <bt:Image id="settings64" DefaultValue="https://reda-beloued.github.io/encryption/images/settings64.png" />
+            <bt:Image id="settings80" DefaultValue="https://reda-beloued.github.io/encryption/images/settings80.png" />
+            <bt:Image id="about16" DefaultValue="https://reda-beloued.github.io/encryption/images/about16.png" />
+            <bt:Image id="about32" DefaultValue="https://reda-beloued.github.io/encryption/images/about32.png" />
+            <bt:Image id="about64" DefaultValue="https://reda-beloued.github.io/encryption/images/about64.png" />
+            <bt:Image id="about80" DefaultValue="https://reda-beloued.github.io/encryption/images/about80.png" />
+         </bt:Images>
+         <bt:Urls>
+            <bt:Url id="messageComposeTaskPaneUrl" DefaultValue="https://reda-beloued.github.io/encryption/compose.html?appid=sslpost" />
+            <bt:Url id="settingsTaskPaneUrl" DefaultValue="https://reda-beloued.github.io/encryption/settings.html?appid=sslpost" />
+            <bt:Url id="aboutTaskPaneUrl" DefaultValue="https://reda-beloued.github.io/encryption/?appid=sslpost" />
+			<bt:Url id="onSendFunctionFileUrl" DefaultValue="https://reda-beloued.github.io/encryption/functions.html?appid=sslpost"/>
+         </bt:Urls>
+         <bt:ShortStrings>
+            <bt:String id="groupLabelSSLPost" DefaultValue="SSLP365" />
+            <bt:String id="tabSSLPostLabel" DefaultValue="SSLP365" />
+            <bt:String id="btnSendSecureLabel" DefaultValue="Send" />
+            <bt:String id="btnSendSecureSuperTipTitle" DefaultValue="Send This Email Securely" />
+            <bt:String id="btnSettingsLabel" DefaultValue="Settings" />
+            <bt:String id="btnSettingsSuperTipTitle" DefaultValue="Edit SSLP365 Settings" />
+            <bt:String id="btnAboutLabel" DefaultValue="About" />
+            <bt:String id="btnAboutSuperTipTitle" DefaultValue="About SSLP365" />
+         </bt:ShortStrings>
+         <bt:LongStrings>
+            <bt:String id="btnSendSecureSuperTipDescription" DefaultValue="Use SSLPost secure email service to deliver this email along with its atachements to the selected recipients." />
+            <bt:String id="btnSettingsSuperTipDescription" DefaultValue="Edit SSLP365 Settings." />
+            <bt:String id="btnAboutSuperTipDescription" DefaultValue="About SSLP365." />
+         </bt:LongStrings>
+      </Resources>
+   </VersionOverrides>
+   </VersionOverrides>
+</OfficeApp>
