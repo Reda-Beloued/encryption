@@ -1,6 +1,6 @@
-﻿
+
 //var mailboxItem;
-var infoMsgKey = "SSL365-Info-Message";
+var infoMsgKey = "Encryption-Addin-Info-Message";
 var currentEvent;
 
 Office.initialize = function (reason) {
@@ -23,22 +23,20 @@ function sendUsingSSL365(event) {
             function callback(result) {
                 if (result.status === Office.AsyncResultStatus.Succeeded) {
                     var subject = result.value;
-                    if (isSubjectConatinsKeyword(subject)) {
-
-                        currentMail.notificationMessages.addAsync(infoMsgKey, {
-                            type: "informationalMessage",
-                            message: "Sending message via SSL365..",
-                            persistent: false,
-                            icon: "about16"
-                        });
-
-                        currentEvent = event;
-                        isUIless = true;
-
-                        prepareData();
-                        sendMessage();
+                    if (isTextConatinsKeyword(subject)) {
+                        prepareSend(event);
                     } else {
-                        event.completed({ allowEvent: true });
+                        currentMail.body.getAsync('text',
+                            function callback(result) {
+                                if (result.status === Office.AsyncResultStatus.Succeeded) {
+                                    var body = result.value;
+                                    if (isTextConatinsKeyword(body)) {
+                                        prepareSend(event);
+                                    } else {
+                                        event.completed({ allowEvent: true });
+                                    }
+                                }
+                            });
                     }
                 }
             });
@@ -47,15 +45,29 @@ function sendUsingSSL365(event) {
     }
 }
 
-function isSubjectConatinsKeyword(subject) {
+function prepareSend(event) {
+    currentMail.notificationMessages.addAsync(infoMsgKey, {
+        type: "informationalMessage",
+        message: "Sending message via "+appInfo.name+" encryption addin..",
+        persistent: false,
+        icon: "about16"
+    });
+
+    currentEvent = event;
+    isUIless = true;
+
+    prepareData();
+    sendMessage();
+}
+function isTextConatinsKeyword(text) {
 
     var keywords = settings.autoSendKeywordList.split(",").map(item => item.trim());
 
     for (var i = 0; i < keywords.length; i++) {
 
-        if (subject.indexOf(keywords[i]) >= 0) {
+        if (text.indexOf(keywords[i]) >= 0) {
             if(settings.removeKeyword)
-                cleanSubject = subject.replace(keywords[i], '').trim();
+                cleanSubject = text.replace(keywords[i], '').trim();
             return true;
         }
     }
