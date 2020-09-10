@@ -62,7 +62,7 @@
                <ExtensionPoint xsi:type="MessageComposeCommandSurface">
                   <OfficeTab id="tabsecureddLabel">
                      <Group id="grpsecuredd">
-                        <Label resid="groupLabelsecuredd" />
+                        <Label resid="groupLabelSecureDD" />
                         <Control xsi:type="Button" id="msgComposeOpenPaneButton">
                            <Label resid="btnSendSecureLabel" />
                            <Supertip>
