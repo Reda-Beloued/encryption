@@ -1,4 +1,4 @@
-
+﻿
 const OUTLOOK_WEB_APP = "OutlookWebApp";
 const OK_TEXT = "ok";
 const WARNING_TEXT = "warning";
@@ -15,13 +15,13 @@ const SENT_MAIL_FLAG =
     ];
 
 var cleanSubject = undefined;
-var settings =
-{
-    username: "",
-    password: "",
-    removeKeyword: false,
-    autoSendKeywordList: ""
-};
+//var settings =
+//{
+//    username: "",
+//    password: "",
+//    removeKeyword: false,
+//    autoSendKeywordList: ""
+//};
 
 
 var currentMail;
@@ -44,7 +44,6 @@ var formData;
 
 var isUIless = false;
 
-
 function prepareData() {
 
     restHost = Office.context.mailbox.restUrl;
@@ -65,24 +64,24 @@ function prepareData() {
     });
 }
 
-function loadSettings() {
+//function loadSettings() {
 
-    var settingStorage = Office.context.roamingSettings;
+//    var settingStorage = Office.context.roamingSettings;
 
-    var settingsStr = settingStorage.get(appInfo.id + "Settings");
-    //var settingsStr = settingStorage.get("SSL365Settings");
+//    var settingsStr = settingStorage.get(appInfo.id + "Settings");
+//    //var settingsStr = settingStorage.get("SSL365Settings");
 
-    if (settingsStr !== undefined && settingsStr !== null) {
+//    if (settingsStr !== undefined && settingsStr !== null) {
 
-        try {
-            settings = JSON.parse(settingsStr);
-        } catch (err) {
-            settings = null;
-        }
-    } else {
-        settings = null;
-    }
-}
+//        try {
+//            settings = JSON.parse(settingsStr);
+//        } catch (err) {
+//            settings = null;
+//        }
+//    } else {
+//        settings = null;
+//    }
+//}
 
 function closeTaskpane() {
     Office.context.ui.closeContainer();

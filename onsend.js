@@ -1,4 +1,4 @@
-
+﻿
 //var mailboxItem;
 var infoMsgKey = "Encryption-Addin-Info-Message";
 var currentEvent;
@@ -16,33 +16,42 @@ function sendUsingSSL365(event) {
 
     const queryString = window.location.search;
 
-    loadSettings();
+    currentMail.notificationMessages.addAsync(infoMsgKey, {
+        type: "informationalMessage",
+        message: "Checking settings..",
+        persistent: false,
+        icon: "about16"
+    });
 
-    if (settings.autoSendKeywordList !== null && settings.autoSendKeywordList.length > 0) {
-        currentMail.subject.getAsync(
-            function callback(result) {
-                if (result.status === Office.AsyncResultStatus.Succeeded) {
-                    var subject = result.value;
-                    if (isTextConatinsKeyword(subject)) {
-                        prepareSend(event);
-                    } else {
-                        currentMail.body.getAsync('text',
-                            function callback(result) {
-                                if (result.status === Office.AsyncResultStatus.Succeeded) {
-                                    var body = result.value;
-                                    if (isTextConatinsKeyword(body)) {
-                                        prepareSend(event);
-                                    } else {
-                                        event.completed({ allowEvent: true });
+    loadSettings();
+    loadKeywords(() => {
+
+        if (settings.autoSendKeywordList !== null && settings.autoSendKeywordList.length > 0) {
+            currentMail.subject.getAsync(
+                function callback(result) {
+                    if (result.status === Office.AsyncResultStatus.Succeeded) {
+                        var subject = result.value;
+                        if (isTextConatinsKeyword(subject)) {
+                            prepareSend(event);
+                        } else {
+                            currentMail.body.getAsync('text',
+                                function callback(result) {
+                                    if (result.status === Office.AsyncResultStatus.Succeeded) {
+                                        var body = result.value;
+                                        if (isTextConatinsKeyword(body)) {
+                                            prepareSend(event);
+                                        } else {
+                                            event.completed({ allowEvent: true });
+                                        }
                                     }
-                                }
-                            });
+                                });
+                        }
                     }
-                }
-            });
-    } else {
-        event.completed({ allowEvent: true });
-    }
+                });
+        } else {
+            event.completed({ allowEvent: true });
+        }
+    });
 }
 
 function prepareSend(event) {
