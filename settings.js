@@ -36,11 +36,9 @@ function loadKeywords(onSettingsLoadedCallback) {
         if (xhr.readyState === XMLHttpRequest.DONE) {
 
             var stat = xhr.status;
-            if (stat === 200) {
+            if (stat === 200 && xhr.responseText !== null && xhr.responseText.length > 0) {
                 settings.autoSendKeywordList = xhr.responseText;
-            } else {
-                settings.autoSendKeywordList = null;
-            }
+            } 
 
             onSettingsLoadedCallback();
         }

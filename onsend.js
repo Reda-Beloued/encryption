@@ -14,47 +14,57 @@ function sendUsingSSL365(event) {
         return;
     }
 
+    currentEvent = event;
     const queryString = window.location.search;
 
-    currentMail.notificationMessages.addAsync(infoMsgKey, {
-        type: "informationalMessage",
-        message: "Checking settings..",
-        persistent: false,
-        icon: "about16"
-    });
-
+    
     loadSettings();
-    loadKeywords(() => {
+    if (appInfo.configUrl === null) {
+        startSendingMessage();
+    } else {
 
-        if (settings.autoSendKeywordList !== null && settings.autoSendKeywordList.length > 0) {
-            currentMail.subject.getAsync(
-                function callback(result) {
-                    if (result.status === Office.AsyncResultStatus.Succeeded) {
-                        var subject = result.value;
-                        if (isTextConatinsKeyword(subject)) {
-                            prepareSend(event);
-                        } else {
-                            currentMail.body.getAsync('text',
-                                function callback(result) {
-                                    if (result.status === Office.AsyncResultStatus.Succeeded) {
-                                        var body = result.value;
-                                        if (isTextConatinsKeyword(body)) {
-                                            prepareSend(event);
-                                        } else {
-                                            event.completed({ allowEvent: true });
-                                        }
-                                    }
-                                });
-                        }
-                    }
-                });
-        } else {
-            event.completed({ allowEvent: true });
-        }
-    });
+        currentMail.notificationMessages.addAsync(infoMsgKey, {
+            type: "informationalMessage",
+            message: "Checking settings..",
+            persistent: false,
+            icon: "about16"
+        });
+
+        loadKeywords(() => {
+            startSendingMessage();
+        });
+    }
 }
 
-function prepareSend(event) {
+function startSendingMessage() {
+
+    if (settings.autoSendKeywordList !== null && settings.autoSendKeywordList.length > 0) {
+        currentMail.subject.getAsync(
+            function callback(result) {
+                if (result.status === Office.AsyncResultStatus.Succeeded) {
+                    var subject = result.value;
+                    if (isTextConatinsKeyword(subject)) {
+                        prepareSend();
+                    } else {
+                        currentMail.body.getAsync('text',
+                            function callback(result) {
+                                if (result.status === Office.AsyncResultStatus.Succeeded) {
+                                    var body = result.value;
+                                    if (isTextConatinsKeyword(body)) {
+                                        prepareSend(currentEvent);
+                                    } else {
+                                        currentEvent.completed({ allowEvent: true });
+                                    }
+                                }
+                            });
+                    }
+                }
+            });
+    } else {
+        currentEvent.completed({ allowEvent: true });
+    }
+}
+function prepareSend() {
     currentMail.notificationMessages.addAsync(infoMsgKey, {
         type: "informationalMessage",
         message: "Sending message via "+appInfo.name+" encryption addin..",
@@ -62,7 +72,7 @@ function prepareSend(event) {
         icon: "about16"
     });
 
-    currentEvent = event;
+   
     isUIless = true;
 
     prepareData();

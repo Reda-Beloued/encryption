@@ -75,7 +75,7 @@
             <span class="ms-font-l ms-fontColor-neutralSecondary ms-fontWeight-semilight">Auto Encrypt:</span>
             <br />
             <p class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                Send using <span id="app-name"></span> if one of the following keywords, comma-separated, is present in email's subject line:
+                Send using <span id="app-name"></span> if one of the following keywords, comma-separated, is present in email's subject line or body:
             </p>
 
             <input type="text"
@@ -154,18 +154,22 @@
                  $('#app-name').html(appInfo.name);
 
                 loadSettings();
-                showSettings();
-                loadKeywords(updateSettings);
+                var show=appInfo.configUrl===null
+                showSettings(show);
+                if(!show)
+                    loadKeywords(updateSettings);
             });
         };
 
-        function showSettings() {
+        function showSettings(showKeywords) {
             if (settings === null)
                 return;
 
             $('#input-username').val(settings.username);
             $('#input-password').val(settings.password);
             $('#chk-remove-keyword').prop("checked", settings.removeKeyword);
+            if(showKeywords)
+                $('#input-keywords').val(settings.autoSendKeywordList);
         }
 
         function updateSettings() {
