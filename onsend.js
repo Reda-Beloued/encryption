@@ -19,26 +19,36 @@ function sendUsingSSL365(event) {
 
     
     loadSettings();
-    if (appInfo.configUrl === null) {
-        startSendingMessage();
+
+    if (settings.username === null || settings.password === null ||
+        settings.autoSendKeywordList === null || settings.autoSendKeywordList.length === 0) {
+
+        currentEvent.completed({ allowEvent: true });
+        
     } else {
 
-        currentMail.notificationMessages.addAsync(infoMsgKey, {
-            type: "informationalMessage",
-            message: "Checking settings..",
-            persistent: false,
-            icon: "about16"
-        });
-
-        loadKeywords(() => {
+        if (appInfo.configUrl === null) {
             startSendingMessage();
-        });
+        } else {
+
+            currentMail.notificationMessages.addAsync(infoMsgKey, {
+                type: "informationalMessage",
+                message: "Checking settings..",
+                persistent: false,
+                icon: "about16"
+            });
+
+            loadKeywords(() => {
+                startSendingMessage();
+            });
+        }
     }
 }
 
 function startSendingMessage() {
 
-    if (settings.autoSendKeywordList !== null && settings.autoSendKeywordList.length > 0) {
+    //if (settings.username !== null && settings.password !== null && 
+    //    settings.autoSendKeywordList !== null && settings.autoSendKeywordList.length > 0) {
         currentMail.subject.getAsync(
             function callback(result) {
                 if (result.status === Office.AsyncResultStatus.Succeeded) {
@@ -60,9 +70,9 @@ function startSendingMessage() {
                     }
                 }
             });
-    } else {
-        currentEvent.completed({ allowEvent: true });
-    }
+    //} else {
+    //    currentEvent.completed({ allowEvent: true });
+    //}
 }
 function prepareSend() {
     currentMail.notificationMessages.addAsync(infoMsgKey, {
