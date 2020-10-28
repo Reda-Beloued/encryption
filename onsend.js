@@ -20,8 +20,9 @@ function sendUsingSSL365(event) {
     
     loadSettings();
 
-    if (settings.username === null || settings.password === null ||
-        settings.autoSendKeywordList === null || settings.autoSendKeywordList.length === 0) {
+    if (settings.useAutoSend !== true ||
+        settings.autoSendKeywordList === null ||
+        settings.autoSendKeywordList.length === 0) {
 
         currentEvent.completed({ allowEvent: true });
         

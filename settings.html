@@ -72,24 +72,32 @@
 
             <!--***********************************************-->
             <hr />
-            <span class="ms-font-l ms-fontColor-neutralSecondary ms-fontWeight-semilight">Auto Encrypt:</span>
-            <br />
-            <p class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                Send using <span id="app-name"></span> if one of the following keywords, comma-separated, is present in email's subject line or body:
-            </p>
-
-            <!--disabled="disabled"-->
-            <input type="text"
-                   id="input-keywords"
-                   style="width:250px;"
-                   placeholder="loading keywords.."
-                   class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight" />
-            <br />
             <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                <input type="checkbox" id="chk-remove-keyword" />
-                <label for="chk-remove-keyword">Remove the keyword from the subject line before sending.</label>
+                <input type="checkbox" id="chk-auto-encrypt" />
+                <label for="chk-auto-encrypt">Enable Auto-Encrypt Feature</label>
             </span>
+            <br />
 
+            <div id="auto-encrypt-div" class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                <p >
+                    Send using <span id="app-name"></span> if one of the following keywords, comma-separated, 
+                    is present in email's subject line or body:
+                </p>
+
+                <!--disabled="disabled"-->
+                <input type="text"
+                       id="input-keywords"
+                       style="width:250px;"
+                       placeholder="loading keywords.."
+                       class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight" />
+                <br />
+               
+                    <input type="checkbox" id="chk-remove-keyword" />
+                    <label for="chk-remove-keyword" 
+                           class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight" >
+                Remove the keyword from the subject line before sending.</label>
+               
+            </div>
             <!--***********************************************-->
             <br />
             <hr />
@@ -149,6 +157,7 @@
 
  
                  $('#button-save-settings').click(saveSettings);
+                $('#chk-auto-encrypt').click(enableDiv);
 
                  $('#input-endpoint').val(appInfo.endpoint);
                  $('#app-name').html(appInfo.name);
@@ -161,55 +170,66 @@
             });
         };
 
-        function showSettings(showKeywords) {
-            if (settings === null)
-                return;
+        //function enableDiv() {
+        //    $('#auto-encrypt-div').children().prop("disabled",
+        //        $('#chk-auto-encrypt').prop("checked") === true);
+        //}
+        //function showSettings(showKeywords) {
+        //    if (settings === null)
+        //        return;
 
-            $('#input-username').val(settings.username);
-            $('#input-password').val(settings.password);
-            $('#chk-remove-keyword').prop("checked", settings.removeKeyword);
-            if(showKeywords)
-                $('#input-keywords').val(settings.autoSendKeywordList);
-        }
+        //    $('#input-username').val(settings.username);
+        //    $('#input-password').val(settings.password);
+        //    $('#chk-auto-encrypt').prop("checked", settings.useAutoSend===true);
+        //    $('#auto-encrypt-div').prop("disabled", !settings.useAutoSend===true);
 
-        function updateSettings() {
+        //    $('#chk-remove-keyword').prop("checked", settings.removeKeyword);
+        //    if(showKeywords)
+        //        $('#input-keywords').val(settings.autoSendKeywordList);
 
-            if (settings.autoSendKeywordList !== null &&
-                settings.autoSendKeywordList.length > 0) {
-                $('#input-keywords').val(settings.autoSendKeywordList);
-            } else {
-                $('#input-keywords').val("error loading keywords!");
-                $('#input-keywords').css('color', 'red');
-            }
-        }
+
+        //}
+
+        //function updateSettings() {
+
+        //    if (settings.autoSendKeywordList !== null &&
+        //        settings.autoSendKeywordList.length > 0) {
+        //        $('#input-keywords').val(settings.autoSendKeywordList);
+        //    } else {
+        //        $('#input-keywords').val("error loading keywords!");
+        //        $('#input-keywords').css('color', 'red');
+        //    }
+        //}
        
 
-        function saveSettings() {
+        //function saveSettings() {
 
-            settings =
-            {
-                username: "",
-                password: "",
-                removeKeyword:false,
-                autoSendKeywordList: ""
-            };
+        //    settings =
+        //    {
+        //        username: "",
+        //        password: "",
+        //        useAutoSend:false,
+        //        removeKeyword:false,
+        //        autoSendKeywordList: ""
+        //    };
 
-            settings.username = $('#input-username').val();
-            settings.password = $('#input-password').val();
-            settings.removeKeyword = $('#chk-remove-keyword').prop("checked");
-            settings.autoSendKeywordList=$('#input-keywords').val();
+        //    settings.username = $('#input-username').val();
+        //    settings.password = $('#input-password').val();
+        //    settings.useAutoSend=$('#chk-auto-send').prop("checked");
+        //    settings.removeKeyword = $('#chk-remove-keyword').prop("checked");
+        //    settings.autoSendKeywordList=$('#input-keywords').val();
            
 
-            var settingStorage = Office.context.roamingSettings;
+        //    var settingStorage = Office.context.roamingSettings;
 
-            settingStorage.set(appInfo.id+"Settings", JSON.stringify(settings));
+        //    settingStorage.set(appInfo.id+"Settings", JSON.stringify(settings));
         
-            Office.context.roamingSettings.saveAsync(function (result) {
-                if (result.status === Office.AsyncResultStatus.Succeeded) {
-                    Office.context.ui.closeContainer();
-                }
-            });
-        }
+        //    Office.context.roamingSettings.saveAsync(function (result) {
+        //        if (result.status === Office.AsyncResultStatus.Succeeded) {
+        //            Office.context.ui.closeContainer();
+        //        }
+        //    });
+        //}
 
     </script>
 </body>
