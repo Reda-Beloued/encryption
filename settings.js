@@ -65,6 +65,8 @@ function showSettings(showKeywords) {
     $('#chk-remove-keyword').prop("checked", settings.removeKeyword);
     if (showKeywords)
         $('#input-keywords').val(settings.autoSendKeywordList);
+    else
+        $('#input-keywords').prop("placeholder", "");
 
 
 }

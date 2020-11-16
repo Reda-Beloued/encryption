@@ -20,7 +20,8 @@ function sendUsingSSL365(event) {
     
     loadSettings();
 
-    if (settings.useAutoSend !== true ||
+    if (settings === null || settings ===undefined ||
+        settings.useAutoSend !== true ||
         settings.autoSendKeywordList === null ||
         settings.autoSendKeywordList.length === 0) {
 
