@@ -29,6 +29,9 @@ function loadSettings() {
 
 function loadKeywords(onSettingsLoadedCallback) {
 
+    if (appInfo.configUrl === null)
+        return;
+
     var xhr = new XMLHttpRequest();
     xhr.open('GET', appInfo.configUrl);
 
