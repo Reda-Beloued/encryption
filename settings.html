@@ -163,8 +163,8 @@
                  $('#app-name').html(appInfo.name);
 
                 loadSettings();
-                showSettings(appInfo.configUrl!==null);
-                if(appInfo.configUrl===null)
+                showSettings(appInfo.configUrl===null);
+                if(appInfo.configUrl!==null)
                     loadKeywords(updateSettings);
             });
         };
