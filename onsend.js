@@ -49,10 +49,14 @@ var keywordsText = "";
 var keywords;
 function startSendingMessage() {
    
-    if (settings.autoSendKeywordList !== null && settings.autoSendKeywordList.length > 0) {
+    if (settings.autoSendKeywordList !== undefined &&
+        settings.autoSendKeywordList !== null &&
+        settings.autoSendKeywordList.length > 0) {
         keywordsText = settings.autoSendKeywordList;
     }
-    if (settings.customSendKeywordList !== null && settings.customSendKeywordList.length > 0) {
+    if (settings.customSendKeywordList !==undefined &&
+        settings.customSendKeywordList !== null &&
+        settings.customSendKeywordList.length > 0) {
         if (keywordsText.length > 0)
             keywordsText += "," + settings.customSendKeywordList;
         else
