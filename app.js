@@ -17,7 +17,8 @@ var appData =
             endpoint: "https://secure.sslpost.com/app/xml/encrypt/",
             configUrl: "https://yacdn.org/proxy/https://drive.google.com/uc?export=download&id=1BClUOjdvamSVH-3okpO-XYhApLz_tYY6"
         },
-        {
+        { //reda.exclusive@gmail.com//gFQdA2N4LrD94vS+
+
             id: "mailadoc", name: "MailaDoc365", service: "MailaDoc",
             endpoint: "https://portal.mailadoc.co.uk/app/xml/encrypt/",
             configUrl: null

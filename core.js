@@ -64,25 +64,6 @@ function prepareData() {
     });
 }
 
-//function loadSettings() {
-
-//    var settingStorage = Office.context.roamingSettings;
-
-//    var settingsStr = settingStorage.get(appInfo.id + "Settings");
-//    //var settingsStr = settingStorage.get("SSL365Settings");
-
-//    if (settingsStr !== undefined && settingsStr !== null) {
-
-//        try {
-//            settings = JSON.parse(settingsStr);
-//        } catch (err) {
-//            settings = null;
-//        }
-//    } else {
-//        settings = null;
-//    }
-//}
-
 function closeTaskpane() {
     Office.context.ui.closeContainer();
 }

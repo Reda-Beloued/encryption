@@ -5,7 +5,8 @@ var settings =
     password: "",
     useAutoSend:false,
     removeKeyword: false,
-    autoSendKeywordList: ""
+    autoSendKeywordList: "",
+    customSendKeywordList: ""
 };
 
 
@@ -52,11 +53,12 @@ function loadKeywords(onSettingsLoadedCallback) {
 }
 
 function enableDiv() {
-    $('#auto-encrypt-div').children().prop("disabled",
-        !$('#chk-auto-encrypt').prop("checked") === true);
+    var checked = $('#chk-auto-encrypt').prop("checked") === false;
+    $('#input-custom-keywords').prop("disabled", checked);
+    $('#chk-remove-keyword').prop("disabled", checked);
 }
 
-function showSettings(showKeywords) {
+function showSettings(isNullUrl) {
     if (settings === null)
         return;
 
@@ -64,12 +66,11 @@ function showSettings(showKeywords) {
     $('#input-password').val(settings.password);
     $('#chk-auto-encrypt').prop("checked", settings.useAutoSend === true);
     $('#auto-encrypt-div').children().prop("disabled", !settings.useAutoSend === true);
-
+    $('#input-custom-keywords').val(settings.customSendKeywordList);
     $('#chk-remove-keyword').prop("checked", settings.removeKeyword);
-    if (showKeywords)
-        $('#input-keywords').val(settings.autoSendKeywordList);
-    //else
-    //    $('#input-keywords').prop("placeholder", "");
+
+    if (isNullUrl)
+        $('#input-keywords').prop("placeholder", "blank list!");
 
 
 }
@@ -80,7 +81,7 @@ function updateSettings() {
         settings.autoSendKeywordList.length > 0) {
         $('#input-keywords').val(settings.autoSendKeywordList);
     } else {
-        $('#input-keywords').val("error loading keywords!");
+        $('#input-keywords').val("cannot load keywords list!");
         $('#input-keywords').css('color', 'red');
     }
 }
@@ -94,14 +95,15 @@ function saveSettings() {
         password: "",
         useAutoSend: false,
         removeKeyword: false,
-        autoSendKeywordList: ""
+        autoSendKeywordList: "",
+        customSendKeywordList:""
     };
 
     settings.username = $('#input-username').val();
     settings.password = $('#input-password').val();
     settings.useAutoSend = $('#chk-auto-encrypt').prop("checked");
     settings.removeKeyword = $('#chk-remove-keyword').prop("checked");
-    settings.autoSendKeywordList = $('#input-keywords').val();
+    settings.customSendKeywordList = $('#input-custom-keywords').val();
 
 
     var settingStorage = Office.context.roamingSettings;

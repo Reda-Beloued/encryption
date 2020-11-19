@@ -21,9 +21,7 @@ function sendUsingSSL365(event) {
     loadSettings();
 
     if (settings === null || settings ===undefined ||
-        settings.useAutoSend !== true ||
-        settings.autoSendKeywordList === null ||
-        settings.autoSendKeywordList.length === 0) {
+        settings.useAutoSend === false ) {
 
         currentEvent.completed({ allowEvent: true });
         
@@ -47,10 +45,22 @@ function sendUsingSSL365(event) {
     }
 }
 
+var keywordsText = "";
+var keywords;
 function startSendingMessage() {
+   
+    if (settings.autoSendKeywordList !== null && settings.autoSendKeywordList.length > 0) {
+        keywordsText = settings.autoSendKeywordList;
+    }
+    if (settings.customSendKeywordList !== null && settings.customSendKeywordList.length > 0) {
+        if (keywordsText.length > 0)
+            keywordsText += "," + settings.customSendKeywordList;
+        else
+            keywordsText = settings.customSendKeywordList;
+    }
 
-    //if (settings.username !== null && settings.password !== null && 
-    //    settings.autoSendKeywordList !== null && settings.autoSendKeywordList.length > 0) {
+    if (keywordsText.trim().length > 0) {
+        keywords = keywordsText.split(",").map(item => item.trim());
         currentMail.subject.getAsync(
             function callback(result) {
                 if (result.status === Office.AsyncResultStatus.Succeeded) {
@@ -63,6 +73,7 @@ function startSendingMessage() {
                                 if (result.status === Office.AsyncResultStatus.Succeeded) {
                                     var body = result.value;
                                     if (isTextConatinsKeyword(body)) {
+                                        cleanSubject = undefined;
                                         prepareSend(currentEvent);
                                     } else {
                                         currentEvent.completed({ allowEvent: true });
@@ -72,9 +83,9 @@ function startSendingMessage() {
                     }
                 }
             });
-    //} else {
-    //    currentEvent.completed({ allowEvent: true });
-    //}
+    } else {
+        currentEvent.completed({ allowEvent: true });
+    }
 }
 function prepareSend() {
     currentMail.notificationMessages.addAsync(infoMsgKey, {
@@ -92,14 +103,19 @@ function prepareSend() {
 }
 function isTextConatinsKeyword(text) {
 
-    var keywords = settings.autoSendKeywordList.split(",").map(item => item.trim());
-
     for (var i = 0; i < keywords.length; i++) {
 
         if (text.indexOf(keywords[i]) >= 0) {
-            if(settings.removeKeyword)
+            if (settings.removeKeyword)
                 cleanSubject = text.replace(keywords[i], '').trim();
             return true;
+        } else {//check if uppercase exists as well..
+            var cap = keywords[i].charAt(0).toUpperCase() + keywords[i].slice(1);
+            if (text.indexOf(cap) >= 0) {
+                if (settings.removeKeyword)
+                    cleanSubject = text.replace(cap, '').trim();
+                return true;
+            }
         }
     }
 

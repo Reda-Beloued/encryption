@@ -79,26 +79,51 @@
             <br />
 
             <div id="auto-encrypt-div" class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                <p >
-                    Send using <span id="app-name"></span> if one of the following keywords, comma-separated, 
+                <p>
+                    Send using <span id="app-name"></span> if one of the following keywords, comma-separated,
                     is present in email's subject line or body:
                 </p>
 
-                <!--disabled="disabled"-->
-                <input type="text"
-                       id="input-keywords"
-                       style="width:250px;"
-                       placeholder="loading keywords.."
-                       class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight" />
-                <br />
-               
-                    <input type="checkbox" id="chk-remove-keyword" />
-                    <label for="chk-remove-keyword" 
-                           class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight" >
-                Remove the keyword from the subject line before sending.</label>
-               
+                <table>
+                    <tr>
+                        <td>
+                            <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
+                                Admin-generated:
+                            </span>
+                        </td>
+                        <td>
+                            <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
+                                <input id="input-keywords" style="width:200px" disabled="disabled"
+                                       class="ms-font-m ms-fontColor-black ms-fontWeight-semilight" />
+                            </span>
+                        </td>
+                    </tr>
+                    <!---------------->
+                    <tr>
+                        <td>
+                            <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
+                                Custom:
+                            </span>
+                        </td>
+                        <td>
+                            <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
+                                <input id="input-custom-keywords" style="width:200px"
+                                       class="ms-font-m ms-fontColor-black ms-fontWeight-semilight"
+                                       placeholder="keyword#1,keyword#2.." />
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+
+                <input type="checkbox" id="chk-remove-keyword" />
+                <label for="chk-remove-keyword"
+                       class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                    Remove the keyword from the subject line before sending.
+                </label>
+
             </div>
-            <!--***********************************************-->
+
+            <!--
             <br />
             <hr />
             <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
@@ -138,17 +163,18 @@
                        disabled />
                 <label for="radio-single-link">Single link, all files will be packaged in a single zip archive.</label>
             </span>
-        </div>
 
-        <div id="footer" style="margin-top:20px;">
-            <button class="ms-Button ms-Button--primary" id="button-save-settings"
-                    style="float:right;width:200px;">
-                <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-                <span class="ms-Button-label" id="button-save-settings-text">Save Settings</span>
-                <span class="ms-Button-description" id="button-desc"></span>
-            </button>
+    -->
         </div>
-    </div>
+            <div id="footer" style="margin-top:20px;">
+                <button class="ms-Button ms-Button--primary" id="button-save-settings"
+                        style="float:right;width:200px;">
+                    <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+                    <span class="ms-Button-label" id="button-save-settings-text">Save Settings</span>
+                    <span class="ms-Button-description" id="button-desc"></span>
+                </button>
+            </div>
+        </div>
 
     <script>
       
@@ -163,73 +189,13 @@
                  $('#app-name').html(appInfo.name);
 
                 loadSettings();
-                showSettings(appInfo.configUrl===null);
-                if(appInfo.configUrl!==null)
+                enableDiv();
+                var isNullUrl = appInfo.configUrl === null;
+                showSettings(isNullUrl);
+                if(!isNullUrl)
                     loadKeywords(updateSettings);
             });
         };
-
-        //function enableDiv() {
-        //    $('#auto-encrypt-div').children().prop("disabled",
-        //        $('#chk-auto-encrypt').prop("checked") === true);
-        //}
-        //function showSettings(showKeywords) {
-        //    if (settings === null)
-        //        return;
-
-        //    $('#input-username').val(settings.username);
-        //    $('#input-password').val(settings.password);
-        //    $('#chk-auto-encrypt').prop("checked", settings.useAutoSend===true);
-        //    $('#auto-encrypt-div').prop("disabled", !settings.useAutoSend===true);
-
-        //    $('#chk-remove-keyword').prop("checked", settings.removeKeyword);
-        //    if(showKeywords)
-        //        $('#input-keywords').val(settings.autoSendKeywordList);
-
-
-        //}
-
-        //function updateSettings() {
-
-        //    if (settings.autoSendKeywordList !== null &&
-        //        settings.autoSendKeywordList.length > 0) {
-        //        $('#input-keywords').val(settings.autoSendKeywordList);
-        //    } else {
-        //        $('#input-keywords').val("error loading keywords!");
-        //        $('#input-keywords').css('color', 'red');
-        //    }
-        //}
-       
-
-        //function saveSettings() {
-
-        //    settings =
-        //    {
-        //        username: "",
-        //        password: "",
-        //        useAutoSend:false,
-        //        removeKeyword:false,
-        //        autoSendKeywordList: ""
-        //    };
-
-        //    settings.username = $('#input-username').val();
-        //    settings.password = $('#input-password').val();
-        //    settings.useAutoSend=$('#chk-auto-send').prop("checked");
-        //    settings.removeKeyword = $('#chk-remove-keyword').prop("checked");
-        //    settings.autoSendKeywordList=$('#input-keywords').val();
-           
-
-        //    var settingStorage = Office.context.roamingSettings;
-
-        //    settingStorage.set(appInfo.id+"Settings", JSON.stringify(settings));
-        
-        //    Office.context.roamingSettings.saveAsync(function (result) {
-        //        if (result.status === Office.AsyncResultStatus.Succeeded) {
-        //            Office.context.ui.closeContainer();
-        //        }
-        //    });
-        //}
-
     </script>
 </body>
 </html>
