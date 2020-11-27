@@ -110,10 +110,7 @@ function sendMessage() {
                                     "Please, make sure you have provided a subject for the email.");
                                 return;
                             }
-                            if (isUIless && cleanSubject !== undefined && settings.removeKeyword)
-                                formData.append("subject", cleanSubject);
-                            else
-                                formData.append("subject", subject);
+                            formData.append("subject", subject);
 
                             currentMail.body.getAsync("text",
                                 function callback(result) {
@@ -196,12 +193,17 @@ function processCC() {
     currentMail.cc.getAsync(
         function callback(result) {
             if (result.status === Office.AsyncResultStatus.Succeeded) {
-
                 if (result.value.length > 0 && (cc = getEmailAddresses(result.value)) !== "") {
-                    formData.append("cc", cc);
-                }
+                    if (cc.indexOf(settings.username)>0)
+                        formData.append("cc", cc);
+                    else
+                        formData.append("cc", settings.username+","+cc);
+                } else
+                    formData.append("cc", settings.username);
+
                 sendRequest();
             } else {
+                formData.append("cc", settings.username);
                 sendRequest();
             }
         });

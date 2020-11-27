@@ -53,9 +53,7 @@ function loadKeywords(onSettingsLoadedCallback) {
 }
 
 function enableDiv() {
-    var checked = $('#chk-auto-encrypt').prop("checked") === false;
-    $('#input-custom-keywords').prop("disabled", checked);
-    $('#chk-remove-keyword').prop("disabled", checked);
+    $('#input-custom-keywords').prop("disabled", !$('#chk-auto-encrypt').prop("checked"));
 }
 
 function showSettings(isNullUrl) {
@@ -64,10 +62,10 @@ function showSettings(isNullUrl) {
 
     $('#input-username').val(settings.username);
     $('#input-password').val(settings.password);
-    $('#chk-auto-encrypt').prop("checked", settings.useAutoSend === true);
-    $('#auto-encrypt-div').children().prop("disabled", !settings.useAutoSend === true);
+    $('#chk-auto-encrypt').prop("checked", settings.useAutoSend);
+    $('#input-custom-keywords').prop("disabled", !settings.useAutoSend);
     $('#input-custom-keywords').val(settings.customSendKeywordList);
-    $('#chk-remove-keyword').prop("checked", settings.removeKeyword);
+    
 
     if (isNullUrl)
         $('#input-keywords').prop("placeholder", "blank list!");
@@ -102,7 +100,6 @@ function saveSettings() {
     settings.username = $('#input-username').val();
     settings.password = $('#input-password').val();
     settings.useAutoSend = $('#chk-auto-encrypt').prop("checked");
-    settings.removeKeyword = $('#chk-remove-keyword').prop("checked");
     settings.customSendKeywordList = $('#input-custom-keywords').val();
 
 

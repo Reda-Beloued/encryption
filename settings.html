@@ -102,7 +102,7 @@
                     <tr>
                         <td>
                             <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
-                                Custom:
+                                Change Auto-Encrypt User’s Custom Words:
                             </span>
                         </td>
                         <td>
@@ -114,13 +114,6 @@
                         </td>
                     </tr>
                 </table>
-
-                <input type="checkbox" id="chk-remove-keyword" />
-                <label for="chk-remove-keyword"
-                       class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                    Remove the keyword from the subject line before sending.
-                </label>
-
             </div>
 
             <!--
@@ -166,14 +159,28 @@
 
     -->
         </div>
-            <div id="footer" style="margin-top:20px;">
+        
+        <div id="footer" style="margin-top:20px;">
+            <div style="float:right;">
                 <button class="ms-Button ms-Button--primary" id="button-save-settings"
-                        style="float:right;width:200px;">
+                        style="width:200px;">
                     <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
                     <span class="ms-Button-label" id="button-save-settings-text">Save Settings</span>
                     <span class="ms-Button-description" id="button-desc"></span>
                 </button>
             </div>
+            <br />
+            <br />
+
+            <div style="float:right;">
+                <a id="account-link" href="" target="_blank">
+                    <span id="account-text" class="ms-font-m  ms-fontWeight-semilight">
+                        My Account
+                    </span>
+                </a>
+            </div>
+
+        </div>
         </div>
 
     <script>
@@ -182,14 +189,17 @@
             $(document).ready(function () {
 
  
-                 $('#button-save-settings').click(saveSettings);
+                $('#button-save-settings').click(saveSettings);
                 $('#chk-auto-encrypt').click(enableDiv);
+                $('#input-endpoint').val(appInfo.endpoint);
+                $('#app-name').html(appInfo.name);
+                $('#account-link').prop("href", appInfo.accountUrl);
+                $('#account-text').text("Visit Your "+appInfo.service+" Account");
 
-                 $('#input-endpoint').val(appInfo.endpoint);
-                 $('#app-name').html(appInfo.name);
+        //Visit My Account
 
                 loadSettings();
-                enableDiv();
+                //enableDiv();
                 var isNullUrl = appInfo.configUrl === null;
                 showSettings(isNullUrl);
                 if(!isNullUrl)
