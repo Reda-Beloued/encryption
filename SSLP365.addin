@@ -149,7 +149,7 @@
             <bt:String id="btnAboutSuperTipTitle" DefaultValue="About SSLP365" />
          </bt:ShortStrings>
          <bt:LongStrings>
-            <bt:String id="btnSendSecureSuperTipDescription" DefaultValue="Use SSLPost secure email service to deliver this email along with its atachements to the selected recipients." />
+            <bt:String id="btnSendSecureSuperTipDescription" DefaultValue="Use SSLPost secure email service to deliver this email along with its attachements to the selected recipients." />
             <bt:String id="btnSettingsSuperTipDescription" DefaultValue="Edit SSLP365 Settings." />
             <bt:String id="btnAboutSuperTipDescription" DefaultValue="About SSLP365." />
          </bt:LongStrings>
