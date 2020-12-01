@@ -194,18 +194,10 @@ function processCC() {
         function callback(result) {
             if (result.status === Office.AsyncResultStatus.Succeeded) {
                 if (result.value.length > 0 && (cc = getEmailAddresses(result.value)) !== "") {
-                    if (cc.indexOf(settings.username)>0)
-                        formData.append("cc", cc);
-                    else
-                        formData.append("cc", settings.username+","+cc);
-                } else
-                    formData.append("cc", settings.username);
-
-                sendRequest();
-            } else {
-                formData.append("cc", settings.username);
-                sendRequest();
+                    formData.append("cc", cc);
+                }
             }
+            sendRequest();
         });
 }
 
