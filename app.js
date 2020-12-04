@@ -15,7 +15,7 @@ var appData =
         {
             id: "sslpost", name: "SSLP365", service: "SSLPost",
             endpoint: "https://secure.sslpost.com/app/xml/encrypt/",
-            configUrl: "https://yacdn.org/proxy/https://drive.google.com/uc?export=download&id=1BClUOjdvamSVH-3okpO-XYhApLz_tYY6",
+            configUrl: null,
             accountUrl:"https://secure.sslpost.com/app/"
         },
         { //gFQdA2N4LrD94vS+

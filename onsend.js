@@ -27,6 +27,7 @@ function sendUsingSSL365(event) {
         
     } else {
 
+
         if (appInfo.configUrl === null) {
             startSendingMessage();
         } else {
@@ -108,12 +109,15 @@ function prepareSend() {
 function isTextConatinsKeyword(text) {
 
     for (var i = 0; i < keywords.length; i++) {
-        if (text.indexOf(keywords[i]) >= 0) {
-            return true;
-        } else {//check if uppercase exists as well..
-            var cap = keywords[i].charAt(0).toUpperCase() + keywords[i].slice(1);
-            if (text.indexOf(cap) >= 0) {
+        var keyword = keywords[i];
+        if (keyword.length > 0 && keyword !== " ") {
+            if (text.indexOf(keyword) >= 0) {
                 return true;
+            } else {//check if uppercase exists as well..
+                var cap = keyword.charAt(0).toUpperCase() + keyword.slice(1);
+                if (text.indexOf(cap) >= 0) {
+                    return true;
+                }
             }
         }
     }

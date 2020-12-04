@@ -24,9 +24,20 @@
 <body class="ms-Fabric">
 
     <div style="padding:5px;">
-        <p class="ms-font-xl ms-ms-fontColor-black ms-fontWeight-semilight">Settings</p>
+        <!--style="float:right;"-->
 
+
+
+        <p class="ms-font-xl ms-ms-fontColor-black ms-fontWeight-semilight">Settings</p>
+        <div >
+            <a id="account-link" href="" target="_blank">
+                <span id="account-text" class="ms-font-m  ms-fontWeight-semilight">
+                    My Account
+                </span>
+            </a>
+        </div>
         <hr />
+        <br />
         <div>
             <table>
                 <tr>
@@ -117,49 +128,49 @@
             </div>
 
             <!--
-            <br />
-            <hr />
-            <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                <input type="checkbox" id="chk-require-login"
-                       disabled checked />
-                <label for="chk-require-login">Require the recipient to login to open received email.</label>
-            </span>
-            <br />
-            <hr />
+                <br />
+                <hr />
+                <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                    <input type="checkbox" id="chk-require-login"
+                           disabled checked />
+                    <label for="chk-require-login">Require the recipient to login to open received email.</label>
+                </span>
+                <br />
+                <hr />
 
-            <span class="ms-font-l ms-fontColor-neutralSecondary ms-fontWeight-semilight">Sending Mode:</span>
-            <br />
-            <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                <input type="radio" name="send-mode" id="radio-linked"
-                       disabled checked />
-                <label for="radion-linked">Linked: delivers the email to the recipient's mailbox.</label>
-            </span>
-            <br />
-            <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                <input type="radio" name="send-mode" id="radio-delegate"
-                       disabled
-                       value="" />
-                <label for="radio-delegate">Delegate: do not deliver the email to the recipient's mailbox.</label>
-            </span>
-            <br />
-            <hr />
-            <span class="ms-font-l ms-fontColor-neutralSecondary ms-fontWeight-semilight">Download Mode:</span>
-            <br />
-            <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                <input type="radio" name="download-mode" id="radio-multi-link"
-                       disabled checked>
-                <label for="radio-multi-link">Multiple links, each file will have its own link.</label>
-            </span>
-            <br />
-            <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                <input type="radio" name="download-mode" id="radio-single-link"
-                       disabled />
-                <label for="radio-single-link">Single link, all files will be packaged in a single zip archive.</label>
-            </span>
+                <span class="ms-font-l ms-fontColor-neutralSecondary ms-fontWeight-semilight">Sending Mode:</span>
+                <br />
+                <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                    <input type="radio" name="send-mode" id="radio-linked"
+                           disabled checked />
+                    <label for="radion-linked">Linked: delivers the email to the recipient's mailbox.</label>
+                </span>
+                <br />
+                <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                    <input type="radio" name="send-mode" id="radio-delegate"
+                           disabled
+                           value="" />
+                    <label for="radio-delegate">Delegate: do not deliver the email to the recipient's mailbox.</label>
+                </span>
+                <br />
+                <hr />
+                <span class="ms-font-l ms-fontColor-neutralSecondary ms-fontWeight-semilight">Download Mode:</span>
+                <br />
+                <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                    <input type="radio" name="download-mode" id="radio-multi-link"
+                           disabled checked>
+                    <label for="radio-multi-link">Multiple links, each file will have its own link.</label>
+                </span>
+                <br />
+                <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                    <input type="radio" name="download-mode" id="radio-single-link"
+                           disabled />
+                    <label for="radio-single-link">Single link, all files will be packaged in a single zip archive.</label>
+                </span>
 
-    -->
+        -->
         </div>
-        
+
         <div id="footer" style="margin-top:20px;">
             <div style="float:right;">
                 <button class="ms-Button ms-Button--primary" id="button-save-settings"
@@ -169,40 +180,29 @@
                     <span class="ms-Button-description" id="button-desc"></span>
                 </button>
             </div>
-            <br />
-            <br />
-
-            <div style="float:right;">
-                <a id="account-link" href="" target="_blank">
-                    <span id="account-text" class="ms-font-m  ms-fontWeight-semilight">
-                        My Account
-                    </span>
-                </a>
-            </div>
-
         </div>
-        </div>
+    </div>
 
     <script>
-      
+
         Office.initialize = function (reason) {
             $(document).ready(function () {
 
- 
+
                 $('#button-save-settings').click(saveSettings);
                 $('#chk-auto-encrypt').click(enableDiv);
                 $('#input-endpoint').val(appInfo.endpoint);
                 $('#app-name').html(appInfo.name);
                 $('#account-link').prop("href", appInfo.accountUrl);
-                $('#account-text').text("Visit Your "+appInfo.service+" Account");
+                $('#account-text').text("Go to  your " + appInfo.service + " account");
 
-        //Visit My Account
+                //Visit My Account
 
                 loadSettings();
                 //enableDiv();
                 var isNullUrl = appInfo.configUrl === null;
                 showSettings(isNullUrl);
-                if(!isNullUrl)
+                if (!isNullUrl)
                     loadKeywords(updateSettings);
             });
         };
