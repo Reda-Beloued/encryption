@@ -142,14 +142,14 @@
             <bt:String id="groupLabelMailaDoc" DefaultValue="MailaDoc365" />
             <bt:String id="tabMailaDocLabel" DefaultValue="MailaDoc365" />
             <bt:String id="btnSendSecureLabel" DefaultValue="Send" />
-            <bt:String id="btnSendSecureSuperTipTitle" DefaultValue="Send This Email Securely" />
+            <bt:String id="btnSendSecureSuperTipTitle" DefaultValue="Send encrypted" />
             <bt:String id="btnSettingsLabel" DefaultValue="Settings" />
             <bt:String id="btnSettingsSuperTipTitle" DefaultValue="Edit MailaDoc365 Settings" />
             <bt:String id="btnAboutLabel" DefaultValue="About" />
             <bt:String id="btnAboutSuperTipTitle" DefaultValue="About MailaDoc365" />
          </bt:ShortStrings>
          <bt:LongStrings>
-            <bt:String id="btnSendSecureSuperTipDescription" DefaultValue="Use MailaDoc secure email service to deliver this email along with its attachements to the selected recipients." />
+            <bt:String id="btnSendSecureSuperTipDescription" DefaultValue="Use MailaDoc secure email service to deliver this email along with its attachments to the selected recipients." />
             <bt:String id="btnSettingsSuperTipDescription" DefaultValue="Edit MailaDoc365 Settings." />
             <bt:String id="btnAboutSuperTipDescription" DefaultValue="About MailaDoc365." />
          </bt:LongStrings>
