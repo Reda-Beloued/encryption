@@ -142,14 +142,14 @@
             <bt:String id="groupLabelSecureDD" DefaultValue="SecureDD365" />
             <bt:String id="tabSecureDDLabel" DefaultValue="SecureDD365" />
             <bt:String id="btnSendSecureLabel" DefaultValue="Send" />
-            <bt:String id="btnSendSecureSuperTipTitle" DefaultValue="Send This Email Securely" />
+            <bt:String id="btnSendSecureSuperTipTitle" DefaultValue="Send encrypted" />
             <bt:String id="btnSettingsLabel" DefaultValue="Settings" />
             <bt:String id="btnSettingsSuperTipTitle" DefaultValue="Edit SecureDD365 Settings" />
             <bt:String id="btnAboutLabel" DefaultValue="About" />
             <bt:String id="btnAboutSuperTipTitle" DefaultValue="About SecureDD365" />
          </bt:ShortStrings>
          <bt:LongStrings>
-            <bt:String id="btnSendSecureSuperTipDescription" DefaultValue="Use SecureDD secure email service to deliver this email along with its attachements to the selected recipients." />
+            <bt:String id="btnSendSecureSuperTipDescription" DefaultValue="Use SecureDD secure email service to deliver this email along with its attachments to the selected recipients." />
             <bt:String id="btnSettingsSuperTipDescription" DefaultValue="Edit SecureDD365 Settings." />
             <bt:String id="btnAboutSuperTipDescription" DefaultValue="About SecureDD365." />
          </bt:LongStrings>
