@@ -29,7 +29,7 @@
 
 
         <p class="ms-font-xl ms-ms-fontColor-black ms-fontWeight-semilight">Settings</p>
-        <div >
+        <div>
             <a id="account-link" href="" target="_blank">
                 <span id="account-text" class="ms-font-m  ms-fontWeight-semilight">
                     My Account
@@ -38,149 +38,168 @@
         </div>
         <hr />
         <br />
-        <div>
+
             <table>
-                <tr>
-                    <td>
-                        <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">Username:</span>
-                    </td>
-                    <td>
-                        <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
-                            <!--value=""-->
-                            <input id="input-username" style="width:210px"
-                                   class="ms-font-m ms-fontColor-black ms-fontWeight-semilight" />
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">Password:</span>
-                    </td>
-                    <td>
-                        <span>
-                            <!--value=""-->
-                            <input type="password" id="input-password" style="width:210px"
-                                   class="ms-font-mms-fontColor-black ms-fontWeight-semilight" />
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">Endpoint:</span>
-                    </td>
-                    <td>
-                        <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-
-                            <!--value="https://secure.sslpost.com/app/xml/encrypt/"-->
-
-                            <input id="input-endpoint" style="width:210px;"
-                                   disabled
-                                   class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight" />
-                        </span>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">Encrypted Message:</span>
+                </td>
+                <td>
+                    <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
+                        <!--value=""-->
+                        <input id="input-encrypted-message" style="width:210px"
+                               class="ms-font-m ms-fontColor-black ms-fontWeight-semilight" />
+                    </span>
+                </td>
+            </tr>
             </table>
 
-            <!--***********************************************-->
             <hr />
-            <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                <input type="checkbox" id="chk-auto-encrypt" />
-                <label for="chk-auto-encrypt">Enable Auto-Encrypt Feature</label>
-            </span>
             <br />
-
-            <div id="auto-encrypt-div" class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                <p>
-                    Send using <span id="app-name"></span> if one of the following keywords, comma-separated,
-                    is present in email's subject line or body:
-                </p>
-
+            <div>
                 <table>
                     <tr>
                         <td>
-                            <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
-                                Admin-generated:
-                            </span>
+                            <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">Username:</span>
                         </td>
                         <td>
                             <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
-                                <input id="input-keywords" style="width:200px" disabled="disabled"
+                                <!--value=""-->
+                                <input id="input-username" style="width:210px"
                                        class="ms-font-m ms-fontColor-black ms-fontWeight-semilight" />
                             </span>
                         </td>
                     </tr>
-                    <!---------------->
+
                     <tr>
                         <td>
-                            <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
-                                Change Auto-Encrypt User’s Custom Words:
-                            </span>
+                            <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">Password:</span>
                         </td>
                         <td>
-                            <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
-                                <input id="input-custom-keywords" style="width:200px"
-                                       class="ms-font-m ms-fontColor-black ms-fontWeight-semilight"
-                                       placeholder="keyword#1,keyword#2.." />
+                            <span>
+                                <!--value=""-->
+                                <input type="password" id="input-password" style="width:210px"
+                                       class="ms-font-mms-fontColor-black ms-fontWeight-semilight" />
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">Endpoint:</span>
+                        </td>
+                        <td>
+                            <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+
+                                <!--value="https://secure.sslpost.com/app/xml/encrypt/"-->
+
+                                <input id="input-endpoint" style="width:210px;"
+                                       disabled
+                                       class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight" />
                             </span>
                         </td>
                     </tr>
                 </table>
+
+                <!--***********************************************-->
+                <hr />
+                <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                    <input type="checkbox" id="chk-auto-encrypt" />
+                    <label for="chk-auto-encrypt">Enable Auto-Encrypt Feature</label>
+                </span>
+                <br />
+
+                <div id="auto-encrypt-div" class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                    <p>
+                        Send using <span id="app-name"></span> if one of the following keywords, comma-separated,
+                        is present in email's subject line or body:
+                    </p>
+
+                    <table>
+                        <tr>
+                            <td>
+                                <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
+                                    Admin-generated:
+                                </span>
+                            </td>
+                            <td>
+                                <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
+                                    <input id="input-keywords" style="width:200px" disabled="disabled"
+                                           class="ms-font-m ms-fontColor-black ms-fontWeight-semilight" />
+                                </span>
+                            </td>
+                        </tr>
+                        <!---------------->
+                        <tr>
+                            <td>
+                                <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
+                                    Change Auto-Encrypt User’s Custom Words:
+                                </span>
+                            </td>
+                            <td>
+                                <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
+                                    <input id="input-custom-keywords" style="width:200px"
+                                           class="ms-font-m ms-fontColor-black ms-fontWeight-semilight"
+                                           placeholder="keyword#1,keyword#2.." />
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!--
+                    <br />
+                    <hr />
+                    <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                        <input type="checkbox" id="chk-require-login"
+                               disabled checked />
+                        <label for="chk-require-login">Require the recipient to login to open received email.</label>
+                    </span>
+                    <br />
+                    <hr />
+
+                    <span class="ms-font-l ms-fontColor-neutralSecondary ms-fontWeight-semilight">Sending Mode:</span>
+                    <br />
+                    <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                        <input type="radio" name="send-mode" id="radio-linked"
+                               disabled checked />
+                        <label for="radion-linked">Linked: delivers the email to the recipient's mailbox.</label>
+                    </span>
+                    <br />
+                    <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                        <input type="radio" name="send-mode" id="radio-delegate"
+                               disabled
+                               value="" />
+                        <label for="radio-delegate">Delegate: do not deliver the email to the recipient's mailbox.</label>
+                    </span>
+                    <br />
+                    <hr />
+                    <span class="ms-font-l ms-fontColor-neutralSecondary ms-fontWeight-semilight">Download Mode:</span>
+                    <br />
+                    <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                        <input type="radio" name="download-mode" id="radio-multi-link"
+                               disabled checked>
+                        <label for="radio-multi-link">Multiple links, each file will have its own link.</label>
+                    </span>
+                    <br />
+                    <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                        <input type="radio" name="download-mode" id="radio-single-link"
+                               disabled />
+                        <label for="radio-single-link">Single link, all files will be packaged in a single zip archive.</label>
+                    </span>
+
+            -->
             </div>
 
-            <!--
-                <br />
-                <hr />
-                <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                    <input type="checkbox" id="chk-require-login"
-                           disabled checked />
-                    <label for="chk-require-login">Require the recipient to login to open received email.</label>
-                </span>
-                <br />
-                <hr />
-
-                <span class="ms-font-l ms-fontColor-neutralSecondary ms-fontWeight-semilight">Sending Mode:</span>
-                <br />
-                <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                    <input type="radio" name="send-mode" id="radio-linked"
-                           disabled checked />
-                    <label for="radion-linked">Linked: delivers the email to the recipient's mailbox.</label>
-                </span>
-                <br />
-                <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                    <input type="radio" name="send-mode" id="radio-delegate"
-                           disabled
-                           value="" />
-                    <label for="radio-delegate">Delegate: do not deliver the email to the recipient's mailbox.</label>
-                </span>
-                <br />
-                <hr />
-                <span class="ms-font-l ms-fontColor-neutralSecondary ms-fontWeight-semilight">Download Mode:</span>
-                <br />
-                <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                    <input type="radio" name="download-mode" id="radio-multi-link"
-                           disabled checked>
-                    <label for="radio-multi-link">Multiple links, each file will have its own link.</label>
-                </span>
-                <br />
-                <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
-                    <input type="radio" name="download-mode" id="radio-single-link"
-                           disabled />
-                    <label for="radio-single-link">Single link, all files will be packaged in a single zip archive.</label>
-                </span>
-
-        -->
-        </div>
-
-        <div id="footer" style="margin-top:20px;">
-            <div style="float:right;">
-                <button class="ms-Button ms-Button--primary" id="button-save-settings"
-                        style="width:200px;">
-                    <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-                    <span class="ms-Button-label" id="button-save-settings-text">Save Settings</span>
-                    <span class="ms-Button-description" id="button-desc"></span>
-                </button>
+            <div id="footer" style="margin-top:20px;">
+                <div style="float:right;">
+                    <button class="ms-Button ms-Button--primary" id="button-save-settings"
+                            style="width:200px;">
+                        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+                        <span class="ms-Button-label" id="button-save-settings-text">Save Settings</span>
+                        <span class="ms-Button-description" id="button-desc"></span>
+                    </button>
+                </div>
             </div>
-        </div>
     </div>
 
     <script>

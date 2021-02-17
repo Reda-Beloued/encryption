@@ -122,7 +122,14 @@ function sendMessage() {
                                                 "Please, make sure you have provided some text as content for the email.");
                                             return;
                                         }
+
                                         formData.append("unencrypted_body", body);
+                                        
+                                        if (settings.encryptedMessage !== undefined &&
+                                            settings.encryptedMessage !== null &&
+                                            settings.encryptedMessage.length > 0) {
+                                            formData.append("body", settings.encryptedMessage);
+                                        }
 
                                         var options = { asyncContext: { currentItem: currentMail } };
                                         currentMail.getAttachmentsAsync(options, function callback(result) {
