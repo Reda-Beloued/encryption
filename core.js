@@ -15,14 +15,7 @@ const SENT_MAIL_FLAG =
     ];
 
 var cleanSubject = undefined;
-//var settings =
-//{
-//    username: "",
-//    password: "",
-//    removeKeyword: false,
-//    autoSendKeywordList: ""
-//};
-
+var encryptedMessage = null;
 
 var currentMail;
 var newMail =
@@ -125,10 +118,9 @@ function sendMessage() {
 
                                         formData.append("unencrypted_body", body);
                                         
-                                        if (settings.encryptedMessage !== undefined &&
-                                            settings.encryptedMessage !== null &&
-                                            settings.encryptedMessage.length > 0) {
-                                            formData.append("body", settings.encryptedMessage);
+                                        if (encryptedMessage !== null &&
+                                            encryptedMessage.length > 0) {
+                                            formData.append("body", encryptedMessage);
                                         }
 
                                         var options = { asyncContext: { currentItem: currentMail } };

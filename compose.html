@@ -87,16 +87,39 @@
         <br />
         <br />
         <br />
-        <p class="ms-font-xl ms-fontColor-neutralSecondary ms-fontWeight-light" style="padding-left:10px;">Are you sure?</p>
+        <p class="ms-font-xl ms-fontColor-neutralSecondary ms-fontWeight-light" style="padding-left:10px;">
+        Are you sure?</p>
         <p id="para-stat"></p>
         <div class="ms-font-xl ms-fontColor-white">
+            <table>
+                <tr>
+                    <td>
+                        <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">Include encrypted message (optional)</span>
+                    </td>
+                </tr>
 
-            <button class="ms-Button ms-Button--primary" id="button-send-message"
-                    style="float:right;width:200px;">
-                <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-                <span class="ms-Button-label" id="button-send-message-text">Yes, send email</span>
-                <span class="ms-Button-description" id="button-desc"></span>
-            </button>
+                <tr>
+                    <td>
+                        <span class="ms-font-m ms-fontColor-black ms-fontWeight-semilight">
+                            <!--value=""-->
+                            <input id="input-encrypted-message" style="float:right;width:280px"
+                                   class="ms-font-m ms-fontColor-black ms-fontWeight-semilight" />
+                        </span>
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td>
+                        <button class="ms-Button ms-Button--primary" id="button-send-message"
+                                style="float:right;width:200px;">
+                            <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+                            <span class="ms-Button-label" id="button-send-message-text">Yes, send email</span>
+                            <span class="ms-Button-description" id="button-desc"></span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 
@@ -104,11 +127,14 @@
          Office.initialize = function (reason) {
         $(document).ready(function () {
 
-            $('#button-send-message').click(sendMessage);//sendMessage
+            $('#button-send-message').click(function () {
+                encryptedMessage = $('#input-encrypted-message').val();
+                sendMessage();
+            });//sendMessage
+
             $('#button-close').click(closeTaskpane);
 
             loadSettings();
-
             prepareData();
         });
     };

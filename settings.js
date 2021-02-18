@@ -6,8 +6,7 @@ var settings =
     useAutoSend:false,
     removeKeyword: false,
     autoSendKeywordList: "",
-    customSendKeywordList: "",
-    encryptedMessage:""
+    customSendKeywordList: ""
 };
 
 
@@ -60,7 +59,6 @@ function enableDiv() {
 function showSettings(isNullUrl) {
     if (settings === null)
         return;
-    $('#input-encrypted-message').val(settings.encryptedMessage);
     $('#input-username').val(settings.username);
     $('#input-password').val(settings.password);
     $('#chk-auto-encrypt').prop("checked", settings.useAutoSend);
@@ -95,11 +93,10 @@ function saveSettings() {
         useAutoSend: false,
         removeKeyword: false,
         autoSendKeywordList: "",
-        customSendKeywordList: "",
-        encryptedMessage: ""
+        customSendKeywordList: ""
     };
 
-    settings.encryptedMessage = $('#input-encrypted-message').val();
+    //settings.encryptedMessage = $('#input-encrypted-message').val();
     settings.username = $('#input-username').val();
     settings.password = $('#input-password').val();
     settings.useAutoSend = $('#chk-auto-encrypt').prop("checked");
