@@ -32,7 +32,6 @@
         <div>
             <a id="account-link" href="" target="_blank">
                 <span id="account-text" class="ms-font-m  ms-fontWeight-semilight">
-                    My Account
                 </span>
             </a>
         </div>
@@ -189,23 +188,45 @@
         Office.initialize = function (reason) {
             $(document).ready(function () {
 
+                loadSettings();
 
                 $('#button-save-settings').click(saveSettings);
                 $('#chk-auto-encrypt').click(enableDiv);
                 $('#input-endpoint').val(appInfo.endpoint);
                 $('#app-name').html(appInfo.name);
-                $('#account-link').prop("href", appInfo.accountUrl);
-                $('#account-text').text("Go to  your " + appInfo.service + " account");
 
-                //Visit My Account
+                if (settings === undefined || settings == null ||
+                    settings.username === undefined || settings.username == null ||
+                    settings.username.length===0) {
 
-                loadSettings();
-                //enableDiv();
+                } else {
+
+                    $('#account-text').text("Go to your Secure Email File Transfer server account");
+
+                    if (appInfo.id === 'sslpost')
+                        $('#account-link').prop("href", getAccountUrl(settings.username));
+                    else
+                        $('#account-link').prop("href", appInfo.accountUrl);
+                }
+
                 var isNullUrl = appInfo.configUrl === null;
                 showSettings(isNullUrl);
                 if (!isNullUrl)
                     loadKeywords(updateSettings);
             });
+
+            function getAccountUrl(username) {
+                const URL = "https://secure.sslpost.com/app/login/domain/"
+
+                var domain = username.split('@')[1];
+                var words = domain.split('.');
+                var brand = words[words.length - 2];
+
+                if (brand === 'sslpost')
+                    return 'https://secure.sslpost.com/app/login/'
+                else
+                    return URL + brand + "/";
+            }
         };
     </script>
 </body>
