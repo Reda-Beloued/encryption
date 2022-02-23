@@ -21,7 +21,7 @@ var appData =
             accountUrl: "https://secure.sslposteurope.com/app/"
         },
         {
-            id: "sslpdev", name: "SSLP Dev365", service: "SSLP Dev",
+            id: "sslpdev", name: "SSLP Dev365", service: "SSLP Dev365",
             endpoint: "https://jollynoyce.dev.sslpost.com/app/xml/encrypt/",
             configUrl: null,
             accountUrl:"https://jollynoyce.dev.sslpost.com/app/"
