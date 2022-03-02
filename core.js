@@ -394,13 +394,16 @@ function deleteCurrentMail() {
         }
      };
     
+    xhr.send();
+    
+    /*
     if(!isUIless){
         xhr.send();
     }else {
         setTimeout(() => {
             xhr.send();
         }, 2000);
-    }
+    }*/
 }
 
 function getItemRestId(id) {
