@@ -388,8 +388,8 @@ function deleteCurrentMail() {
 
     //xhr.send();
     setTimeout(() => {
-        xhr.send
-    }, 3000);
+        xhr.send();
+    }, 2000);
 }
 
 function getItemRestId(id) {
