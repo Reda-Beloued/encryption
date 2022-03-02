@@ -386,10 +386,21 @@ function deleteCurrentMail() {
     xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
     xhr.setRequestHeader("Content-Type", "application/json");
 
-    //xhr.send();
-    setTimeout(() => {
+     xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+
+            var status = xhr.status;
+            console.print(status)
+        }
+     };
+    
+    if(!isUIless){
         xhr.send();
-    }, 2000);
+    }else {
+        setTimeout(() => {
+            xhr.send();
+        }, 2000);
+    }
 }
 
 function getItemRestId(id) {
