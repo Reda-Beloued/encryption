@@ -4,7 +4,7 @@ const OK_TEXT = "ok";
 const WARNING_TEXT = "warning";
 const WARNING_OK_TEXT = "warning-ok";
 const ERROR_TEXT = "error";
-const MAX_ATTEMPTS = 5;
+const MAX_ATTEMPTS = 10;
 
 const SENT_MAIL_FLAG =
     [
