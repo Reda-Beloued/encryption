@@ -359,15 +359,15 @@ function createMailCopy(emailJson) {
                         navigator.platform !== null && navigator.platform.toLowerCase().indexOf("mac") >= 0) {
                         SUCCESS_MSG = SUCCESS_MSG.replace('below', 'above');
                     }
-                    showNotification(OK_TEXT, "", SUCCESS_MSG);
+                    //showNotification(OK_TEXT, "", SUCCESS_MSG);
                     deleteCurrentMail();
                 } else {
                     showNotification(WARNING_OK_TEXT, "Message Sent!", "But couldn't be moved to 'Sent Items' folder.");
                 }
             } else {
                 if (stat === 200 || stat === 201) {
-                    showNotification(OK_TEXT, "SUCCESS!",
-                        "Your email has been sent securely via the " + appInfo.name + " encryption add-in.");
+                    //showNotification(OK_TEXT, "SUCCESS!",
+                     //   "Your email has been sent securely via the " + appInfo.name + " encryption add-in.");
                     deleteCurrentMail();
                 } else {
                     showNotification(WARNING_OK_TEXT, "Message Sent!", "But couldn't be moved to 'Sent Items' folder.");
@@ -388,7 +388,13 @@ function deleteCurrentMail() {
 
      xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-            console.log("status=" + xhr.status);
+            
+            if (isUIless) {//from auto-send
+                showNotification(OK_TEXT, "", SUCCESS_MSG);
+            } else {
+                showNotification(OK_TEXT, "SUCCESS!",
+                    "Your email has been sent securely via the " + appInfo.name + " encryption add-in.");
+            }
         }
      };
     
