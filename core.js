@@ -388,22 +388,11 @@ function deleteCurrentMail() {
 
      xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-
-            var status = xhr.status;
-            console.print(status)
+            console.log("status=" + xhr.status);
         }
      };
     
     xhr.send();
-    
-    /*
-    if(!isUIless){
-        xhr.send();
-    }else {
-        setTimeout(() => {
-            xhr.send();
-        }, 2000);
-    }*/
 }
 
 function getItemRestId(id) {
