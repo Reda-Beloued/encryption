@@ -45,7 +45,6 @@ function prepareData() {
 
     currentMail.saveAsync(function callback(result) {
         if (result.status === Office.AsyncResultStatus.Succeeded) {
-            //
             currentMailID = getItemRestId(result.value);
         }
     });
