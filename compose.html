@@ -67,6 +67,16 @@
                     <td colspan="2"></td>
                 </tr>
 
+                <tr class="break">
+                    <td colspan="2">
+                        <div id="account-link-div">
+                            <a id="account-link" href="" target="_blank">
+                                <span id="account-text" class="ms-font-m  ms-fontWeight-semilight">
+                                </span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
                 <tr>
                     <td colspan="3" align="center">
                         <button class="ms-Button ms-Button--primary" id="button-close" style="width:150px;">
@@ -88,7 +98,8 @@
         <br />
         <br />
         <p class="ms-font-xl ms-fontColor-neutralSecondary ms-fontWeight-light" style="padding-left:10px;">
-        Are you sure?</p>
+            Are you sure?
+        </p>
         <p id="para-stat"></p>
         <div class="ms-font-xl ms-fontColor-white">
             <table>
@@ -136,7 +147,27 @@
 
             loadSettings();
             prepareData();
+
+            $('#account-text').text("Go to your Secure Email File Transfer server account");
+
+            if (appInfo.id === 'sslpost')
+                $('#account-link').prop("href", getAccountUrl(settings.username));
+            else
+                $('#account-link').prop("href", appInfo.accountUrl);
         });
+
+        function getAccountUrl(username) {
+            const URL = "https://secure.sslpost.com/app/login/domain/"
+
+            var domain = username.split('@')[1];
+            var words = domain.split('.');
+            var brand = words[words.length - 2];
+
+            if (brand === 'sslpost')
+                return 'https://secure.sslpost.com/app/login/'
+            else
+                return URL + brand + "/";
+        }
     };
     </script>
 </body>
