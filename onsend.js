@@ -113,13 +113,19 @@ function isTextConatinsKeyword(text) {
         return true;
     } else {
         var asteriks = keywords.filter(word => word.endsWith("*"));
+        var found=false;
 
         asteriks.forEach((asterik) => {
             var asterikFree = asterik.substr(0, asterik.length - 2).toLowerCase();
             if (txt.indexOf(asterikFree) === 0 || txt.indexOf(" " + asterikFree) > 0) {
-                return true;
+                found=true;
+                break;
             }
         });
+        
+        if(found){
+            return true;
+        }
     }
 
     for (var i = 0; i < keywords.length; i++) {
