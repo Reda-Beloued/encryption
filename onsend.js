@@ -115,11 +115,11 @@ function isTextConatinsKeyword(text) {
         var asteriks = keywords.filter(word => word.endsWith("*"));
         var found=false;
 
-        asteriks.forEach((asterik) => {
+        asteriks.every((asterik) => {
             var asterikFree = asterik.substr(0, asterik.length - 1).toLowerCase();
             if (txt.indexOf(asterikFree) === 0 || txt.indexOf(" " + asterikFree) > 0) {
                 found=true;
-                break;
+                return false;
             }
         });
         
