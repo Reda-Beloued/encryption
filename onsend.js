@@ -108,6 +108,20 @@ function prepareSend() {
 }
 function isTextConatinsKeyword(text) {
 
+    var txt = text.toLowerCase();
+    if (keywords.find(word => word === "*")) {
+        return true;
+    } else {
+        var asteriks = keywords.filter(word => word.endsWith("*"));
+
+        asteriks.forEach((asterik) => {
+            var asterikFree = asterik.substr(0, asterik.length - 2).toLowerCase();
+            if (txt.indexOf(asterikFree) == 0 || txt.indexOf(" " + asterikFree) > 0) {
+                return true;
+            }
+        });
+    }
+
     for (var i = 0; i < keywords.length; i++) {
         var keyword = keywords[i];
         if (keyword.length > 0 && keyword !== " ") {
@@ -121,6 +135,6 @@ function isTextConatinsKeyword(text) {
             }
         }
     }
-
+ 
     return false;
 }
