@@ -116,7 +116,7 @@ function isTextConatinsKeyword(text) {
 
         asteriks.forEach((asterik) => {
             var asterikFree = asterik.substr(0, asterik.length - 2).toLowerCase();
-            if (txt.indexOf(asterikFree) == 0 || txt.indexOf(" " + asterikFree) > 0) {
+            if (txt.indexOf(asterikFree) === 0 || txt.indexOf(" " + asterikFree) > 0) {
                 return true;
             }
         });
