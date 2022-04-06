@@ -121,6 +121,8 @@ function isTextConatinsKeyword(text) {
                 found=true;
                 return false;
             }
+            
+            return true;
         });
         
         if(found){
