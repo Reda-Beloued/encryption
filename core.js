@@ -4,7 +4,7 @@ const OK_TEXT = "ok";
 const WARNING_TEXT = "warning";
 const WARNING_OK_TEXT = "warning-ok";
 const ERROR_TEXT = "error";
-const MAX_ATTEMPTS = 10;
+const MAX_ATTEMPTS = 5;
 
 const SENT_MAIL_FLAG =
     [
@@ -45,6 +45,7 @@ function prepareData() {
 
     currentMail.saveAsync(function callback(result) {
         if (result.status === Office.AsyncResultStatus.Succeeded) {
+            //
             currentMailID = getItemRestId(result.value);
         }
     });
@@ -77,9 +78,12 @@ function sendMessage() {
     formData.append("email", settings.username);
     formData.append("password", settings.password);
     formData.append("send_mode", "L");
-    formData.append("passwordless", "0");
+    //formData.append("passwordless", "0");
     formData.append("download_all", "1");
 
+    if (appInfo.id === "helloflex") {
+        formData.append("passwordless", "1");
+    }
 
     currentMail.to.getAsync(
         function callback(result) {
@@ -366,7 +370,7 @@ function createMailCopy(emailJson) {
             } else {
                 if (stat === 200 || stat === 201) {
                     //showNotification(OK_TEXT, "SUCCESS!",
-                     //   "Your email has been sent securely via the " + appInfo.name + " encryption add-in.");
+                    //    "Your email has been sent securely via the " + appInfo.name + " encryption add-in.");
                     deleteCurrentMail();
                 } else {
                     showNotification(WARNING_OK_TEXT, "Message Sent!", "But couldn't be moved to 'Sent Items' folder.");
@@ -385,9 +389,9 @@ function deleteCurrentMail() {
     xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
     xhr.setRequestHeader("Content-Type", "application/json");
 
-     xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-            
+
             if (isUIless) {//from auto-send
                 showNotification(OK_TEXT, "", SUCCESS_MSG);
             } else {
@@ -395,8 +399,8 @@ function deleteCurrentMail() {
                     "Your email has been sent securely via the " + appInfo.name + " encryption add-in.");
             }
         }
-     };
-    
+    };
+
     xhr.send();
 }
 
