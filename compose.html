@@ -149,7 +149,7 @@
             $('#button-send-message').click(function () {
                 encryptedMessage = $('#input-encrypted-message').val();
 
-                //settings.requirePassword = $('#chk-pwd').prop("checked");
+                //settings.passwordless = $('#chk-pwd').prop("checked");
 
                 //var settingStorage = Office.context.roamingSettings;
 
@@ -169,9 +169,9 @@
             loadSettings();
             prepareData();
 
-            $('#chk-pwd').prop("checked", settings.requirePassword);
+            $('#chk-pwd').prop("checked", !settings.passwordless);
             $('#chk-pwd').click(function () {
-                settings.requirePassword = $('#chk-pwd').prop("checked");
+                settings.passwordless = !$('#chk-pwd').prop("checked");
 
                 var settingStorage = Office.context.roamingSettings;
 

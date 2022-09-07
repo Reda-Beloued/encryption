@@ -78,12 +78,11 @@ function sendMessage() {
     formData.append("email", settings.username);
     formData.append("password", settings.password);
     formData.append("send_mode", "L");
-    //formData.append("passwordless", "0");
     formData.append("download_all", "1");
 
-    if (!settings.requirePassword) {
-       formData.append("passwordless", "1");
-     }
+    if (settings.passwordless) {
+        formData.append("passwordless", "1");
+    }
 
     currentMail.to.getAsync(
         function callback(result) {
