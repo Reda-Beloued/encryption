@@ -85,7 +85,7 @@ function sendMessage() {
     //    formData.append("passwordless", "1");
     //}
 
-    if (settings.requirePassword) {
+    if (!settings.requirePassword) {
         formData.append("passwordless", "1");
     }
 
