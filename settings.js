@@ -3,7 +3,8 @@ var settings =
 {
     username: "",
     password: "",
-    useAutoSend:false,
+    useAutoSend: false,
+    requirePassword: false,
     removeKeyword: false,
     autoSendKeywordList: "",
     customSendKeywordList: ""
@@ -91,6 +92,7 @@ function saveSettings() {
         username: "",
         password: "",
         useAutoSend: false,
+        requirePassword: false,
         removeKeyword: false,
         autoSendKeywordList: "",
         customSendKeywordList: ""

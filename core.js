@@ -81,7 +81,11 @@ function sendMessage() {
     //formData.append("passwordless", "0");
     formData.append("download_all", "1");
 
-    if (appInfo.id === "helloflex") {
+    //if (appInfo.id === "helloflex") {
+    //    formData.append("passwordless", "1");
+    //}
+
+    if (settings.requirePassword) {
         formData.append("passwordless", "1");
     }
 

@@ -122,6 +122,14 @@
                 <tr></tr>
                 <tr>
                     <td>
+                        <span class="ms-font-m ms-fontColor-neutralSecondary ms-fontWeight-semilight">
+                            <input type="checkbox" id="chk-pwd" />
+                            <label for="chk-pwd">Require the recipient to log-in to open received email</label>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <button class="ms-Button ms-Button--primary" id="button-send-message"
                                 style="float:right;width:200px;">
                             <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
@@ -140,13 +148,37 @@
 
             $('#button-send-message').click(function () {
                 encryptedMessage = $('#input-encrypted-message').val();
+
+                //settings.requirePassword = $('#chk-pwd').prop("checked");
+
+                //var settingStorage = Office.context.roamingSettings;
+
+                //settingStorage.set(appInfo.id + "Settings", JSON.stringify(settings));
+
+                //Office.context.roamingSettings.saveAsync(function (result) {
+                //    if (result.status === Office.AsyncResultStatus.Succeeded) {
+                //        Office.context.ui.closeContainer();
+                //    }
+                //});
+
                 sendMessage();
-            });//sendMessage
+            });
 
             $('#button-close').click(closeTaskpane);
 
             loadSettings();
             prepareData();
+
+            $('#chk-pwd').prop("checked", settings.requirePassword);
+            $('#chk-pwd').click(function () {
+                settings.requirePassword = $('#chk-pwd').prop("checked");
+
+                var settingStorage = Office.context.roamingSettings;
+
+                settingStorage.set(appInfo.id + "Settings", JSON.stringify(settings));
+
+                Office.context.roamingSettings.saveAsync();
+            });
 
             $('#account-text').text("Go to your Secure Email File Transfer server account");
 
