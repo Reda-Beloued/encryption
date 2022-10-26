@@ -396,7 +396,7 @@ function deleteCurrentMail() {
             } else {
                 showNotification(OK_TEXT, "SUCCESS!",
                     "Your email has been sent securely via the " + appInfo.name + " encryption add-in.");
-                setTimeout(closeTaskpane, 5*1000);
+                //setTimeout(closeTaskpane, 5*1000);
             }
         }
     };
