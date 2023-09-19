@@ -22,7 +22,7 @@
    </Hosts>
    <Requirements>
       <Sets>
-         <Set Name="Mailbox" MinVersion="1.4" />
+         <Set Name="Mailbox" MinVersion="1.8" />
       </Sets>
    </Requirements>
    <FormSettings>
@@ -45,7 +45,7 @@
 
 	
       <Requirements>
-         <bt:Sets DefaultMinVersion="1.4">
+         <bt:Sets DefaultMinVersion="1.8">
             <bt:Set Name="Mailbox" />
          </bt:Sets>
       </Requirements>
