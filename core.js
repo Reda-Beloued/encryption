@@ -1,4 +1,4 @@
-﻿
+
 const OUTLOOK_WEB_APP = "OutlookWebApp";
 const OK_TEXT = "ok";
 const WARNING_TEXT = "warning";
@@ -126,56 +126,7 @@ function sendMessage() {
                                         }
 
                                         var options = { asyncContext: { currentItem: currentMail } };
-                                        currentMail.getAttachmentsAsync(options, function callback(result) {
-                                            if (result.status === Office.AsyncResultStatus.Succeeded) {
-                                                var attchs = result.value;
-                                                var attchCount = attchs.length;
-                                                if (attchCount > 0) {
-                                                    showSpinner(true);
-                                                    showSpinnerText("Preparing attachments..");
-                                                    var loadedAttchCount = 0;
-                                                    var attch;
-                                                    var fileNames = "";
-                                                    for (var i = 0; i < attchCount; i++) {
-                                                        attch = attchs[i];
-                                                        var fileName = attch.name;
-
-
-                                                        result.asyncContext.currentItem.getAttachmentContentAsync(attch.id, { asyncContext: { currentItem: fileName } }, function callback(result) {
-                                                            if (result.status === Office.AsyncResultStatus.Succeeded) {
-
-                                                                var fileName = result.asyncContext.currentItem;
-                                                                loadedAttchCount++;
-                                                                showSpinnerText("Loading attachment.. (" + loadedAttchCount + "/" + attchCount + "): " + fileName);
-                                                                var file = result.value;
-                                                                if (file.format === Office.MailboxEnums.AttachmentContentFormat.Base64) {
-
-                                                                    attachements.push({
-                                                                        "@odata.type": "#Microsoft.OutlookServices.FileAttachment",
-                                                                        Name: fileName,
-                                                                        ContentBytes: file.content
-                                                                    });
-
-                                                                    var buffer = decodeBase64(file.content);
-                                                                    var blob = new Blob([buffer], { type: "octet-stream" });
-                                                                    formData.append("file[]", blob, fileName);
-
-
-                                                                    if (loadedAttchCount === attchCount)
-                                                                        processCC();
-                                                                }
-                                                            } else {
-                                                                //result.asyncContext.currentItem.getAttachmentContentAsync FAILED
-                                                            }
-                                                        });
-                                                    }
-                                                } else {// no attachments
-                                                    processCC();
-                                                }
-                                            } else {
-                                                //email.getAttachmentsAsync FAILED
-                                            }
-                                        });
+                                        currentMail.getAttachmentsAsync(options, callback);
                                     }// body
                                 });
                         } //subject
@@ -184,6 +135,49 @@ function sendMessage() {
         });
 }
 
+var attchCount = 0;
+var loadedAttchCount = 0;
+
+function callback(result) {
+
+    attchCount = result.value.length;
+    if (result.value.length > 0) {
+        for (let i = 0; i < result.value.length; i++) {
+            result.asyncContext.currentItem.getAttachmentContentAsync(result.value[i].id,
+                { asyncContext: { currentItem: result.value[i].name } },
+                handleAttachmentsCallback);
+        }
+    } else {// no attachments
+        processCC();
+    }
+}
+
+function handleAttachmentsCallback(result) {
+    
+    var fileName = result.asyncContext.currentItem;
+    loadedAttchCount++;
+    showSpinnerText("Loading " + fileName);
+    var file = result.value;
+    if (file.format === Office.MailboxEnums.AttachmentContentFormat.Base64) {
+
+        attachements.push({
+            "@odata.type": "#Microsoft.OutlookServices.FileAttachment",
+            Name: fileName,
+            ContentBytes: file.content
+        });
+
+        var buffer = decodeBase64(file.content);
+        var blob = new Blob([buffer], { type: "octet-stream" });
+        formData.append("file[]", blob, fileName);
+
+
+        //if (loadedAttchCount === attchCount)
+        //    processCC();
+    }
+
+    if (loadedAttchCount === attchCount)
+        processCC();
+}
 
 function sendRequestX(data) {
     getSavedMessage();
@@ -396,7 +390,8 @@ function deleteCurrentMail() {
             } else {
                 showNotification(OK_TEXT, "SUCCESS!",
                     "Your email has been sent securely via the " + appInfo.name + " encryption add-in.");
-                //setTimeout(closeTaskpane, 5*1000);
+
+                setTimeout(closeTaskpane, 5*1000);
             }
         }
     };
@@ -547,7 +542,3 @@ function showNotification(type, header, content) {
         showPopup(true, false);
     }
 }
-
-
-
-
