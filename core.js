@@ -126,7 +126,7 @@ function sendMessage() {
                                         }
 
                                         var options = { asyncContext: { currentItem: currentMail } };
-                                        currentMail.getAttachmentsAsync(options, callback);
+                                        currentMail.getAttachmentsAsync(options, attachmentsLoaded);
                                     }// body
                                 });
                         } //subject
@@ -138,7 +138,7 @@ function sendMessage() {
 var attchCount = 0;
 var loadedAttchCount = 0;
 
-function callback(result) {
+function attachmentsLoaded(result) {
 
     attchCount = result.value.length;
     if (result.value.length > 0) {
